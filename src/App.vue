@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput></TodoInput>
-    <TodoList></TodoList>
+    <TodoList :todo-array="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
 </template>
@@ -32,7 +32,7 @@ export default {
         } //for
       } //if
     });
-    
+
     return { todoItems };
   }, //setup
 
