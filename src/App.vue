@@ -13,11 +13,29 @@ import TodoInput from '@/components/TodoInput.vue'
 import TodoList from '@/components/TodoList.vue'
 import TodoFooter from '@/components/TodoFooter.vue'
 //import { defineComponent } from 'vue'
+import { reactive, onBeforeMount } from "vue"
 
 export default {
   components: {
     TodoHeader, TodoInput, TodoList, TodoFooter
-  }
+  },
+  setup() {
+    const todoItems = reactive([]);
+
+    onBeforeMount(() => {
+      if (localStorage.length > 0) {
+        for (var i = 0; i < localStorage.length; i++) {
+          const itemJson = localStorage.getItem(localStorage.key(i))
+          if (itemJson) {
+            todoItems.push(JSON.parse(itemJson));
+          } //if
+        } //for
+      } //if
+    });
+    
+    return { todoItems };
+  }, //setup
+
 }
 </script>
 
@@ -51,6 +69,6 @@ button {
 
 i,
 span {
-    cursor: pointer;
+  cursor: pointer;
 }
 </style>
