@@ -33,7 +33,13 @@ export default {
       } //if
     });
 
-    return { todoItems };
+    const addTodo = (todoItemStr) => {
+      const todoItemObj = { completed: false, item: todoItemStr };
+      localStorage.setItem(todoItemStr, JSON.stringify(todoItemObj));
+      todoItems.push(todoItemObj);
+    };//addTodo
+
+    return { todoItems, addTodo };
   }, //setup
 
 }
