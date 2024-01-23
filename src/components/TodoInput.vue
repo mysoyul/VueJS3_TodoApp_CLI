@@ -12,7 +12,7 @@ import { ref } from 'vue'
 
 const newTodoItem = ref("")
 
-const emit = defineEmits(["input:todo"])
+const emit = defineEmits(["input:todo","add:todo"])
 
 const handleInput = (event) => {
     const todoText = event.target.value
@@ -23,9 +23,7 @@ const handleInput = (event) => {
 
 const addTodo = () => {
     if (newTodoItem.value !== "") {
-        const todoItem = newTodoItem.value
-        const todoItemObj = { completed: false, item: todoItem }
-        localStorage.setItem(todoItem, JSON.stringify(todoItemObj))
+        emit('add:todo', newTodoItem.value)
         clearInput()
     }
 }
