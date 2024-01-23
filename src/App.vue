@@ -40,8 +40,8 @@ export default {
       todoItems.push(todoItemObj);
     };//addTodo
 
-    const removeTodo = (todoItemStr, index) => {
-      localStorage.removeItem(todoItemStr);
+    const removeTodo = (todoItem, index) => {
+      localStorage.removeItem(todoItem.item);
       todoItems.splice(index, 1);
     };
 
