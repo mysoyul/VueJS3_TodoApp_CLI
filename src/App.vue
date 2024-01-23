@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput></TodoInput>
+    <TodoInput @add:todo="addTodo"></TodoInput>
     <TodoList :todo-array="todoItems"></TodoList>
     <TodoFooter></TodoFooter>
   </div>
