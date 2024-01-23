@@ -37,7 +37,7 @@ export const store = createStore({
                     } else {
                         console.error(error);
                     }
-                });
+                })
         }, //loadTodoItems
         removeTodo({ commit }, payload) {
             http
@@ -55,6 +55,22 @@ export const store = createStore({
                     commit('setTodoItems', items)
                 })
         },
+        toggleTodo({ commit }, payload) {
+            http
+                .put(`/todos/${payload.id}`, payload)
+                .then(r => r.data)
+                .then(items => {
+                    commit('setTodoItems', items)
+                })
+                .catch(error => {
+                    if (axios.isAxiosError(error)) {
+                        console.log(error?.response?.status + ' : ' + error?.message)
+                    } else {
+                        console.error(error);
+                    }
+                })
+        },
+
     },
     mutations: {
         setTodoItems(state, items) {
