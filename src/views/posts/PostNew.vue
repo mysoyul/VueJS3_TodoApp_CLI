@@ -28,7 +28,7 @@ import * as yup from 'yup'
 const store = useStore()
 const router = useRouter()
 
-const {  defineField, handleSubmit, errors } = useForm({
+const { defineField, handleSubmit, errors } = useForm({
     validationSchema: yup.object({
         email: yup.string().email().required(),
         title: yup.string().required(),
