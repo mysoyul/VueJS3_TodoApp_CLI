@@ -57,7 +57,7 @@ export const store = createStore({
         },
         toggleTodo({ commit }, payload) {
             http
-                .put(`/todos/${payload.id}`, payload)
+                .patch(`/todos/${payload.id}`, payload)
                 .then(r => r.data)
                 .then(items => {
                     commit('setTodoItems', items)
@@ -68,6 +68,14 @@ export const store = createStore({
                     } else {
                         console.error(error);
                     }
+                })
+        },
+        clearTodo({ commit }) {
+            http
+                .delete('/todos')
+                .then(r => r.data)
+                .then(items => {
+                    commit('setTodoItems', items)
                 })
         },
 
