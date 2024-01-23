@@ -33,12 +33,20 @@ export const store = createStore({
                 })
                 .catch(error => {
                     if (axios.isAxiosError(error)) {
-                        console.log(error?.response?.status +' : ' + error?.message)
+                        console.log(error?.response?.status + ' : ' + error?.message)
                     } else {
                         console.error(error);
                     }
                 });
         }, //loadTodoItems
+        removeTodo({ commit }, payload) {
+            http
+                .delete(`/todos/${payload.id}`)
+                .then(r => r.data)
+                .then(items => {
+                    commit('setTodoItems', items)
+                })
+        }, //removeTodo
     },
     mutations: {
         setTodoItems(state, items) {
